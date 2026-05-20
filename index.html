@@ -32,7 +32,8 @@
 <body class="bg-slate-950 text-slate-100 font-sans overflow-x-hidden">
 
     <script>
-        const NO_WHATSAPP = "085774757725"; 
+        // Nomor WhatsApp dengan format baru request-an kamu
+        const NO_WHATSAPP = "+62 857 7475 7725"; 
     </script>
 
     <nav class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800">
@@ -294,7 +295,7 @@
         <div class="max-w-4xl mx-auto px-4 mb-6">
             <p class="text-slate-400 mb-4">Butuh custom desain atau top up dalam jumlah besar?</p>
             <button onclick="bukaWAGeneric('Halo Admin, saya ingin menanyakan harga kustom / grosir.')" class="inline-flex items-center gap-2 text-green-400 hover:text-green-300 font-bold text-base transition">
-                <i class="fa-brands fa-whatsapp text-xl"></i> Hubungi Admin WhatsApp Resmi
+                <i class="fa-brands fa-whatsapp text-xl"></i> Hubungi Admin WhatsApp Resmi (+62 857 7475 7725)
             </button>
         </div>
         <div class="border-t border-slate-900 pt-6">
@@ -308,6 +309,11 @@
             duration: 800,
             once: true,
         });
+
+        // Helper function untuk membersihkan nomor telepon untuk URL wa.me
+        function dapatkanCleanPhone() {
+            return NO_WHATSAPP.replace(/[^0-9]/g, '');
+        }
 
         function pilihKategoriJasa(target) {
             const allCards = document.querySelectorAll('#services div, #topup div, #certificates div');
@@ -341,18 +347,21 @@
         }
 
         function orderJasa(namaJasa) {
+            let cleanPhone = dapatkanCleanPhone();
             let teks = encodeURIComponent(`Halo MAI DESAIN STORE, saya tertarik untuk memesan layanan *${namaJasa}*. Bagaimana prosedur selanjutnya?`);
-            window.open(`https://wa.me/${NO_WHATSAPP}?text=${teks}`, '_blank');
+            window.open(`https://wa.me/${cleanPhone}?text=${teks}`, '_blank');
         }
 
         function orderTopUp(namaGame, paket) {
+            let cleanPhone = dapatkanCleanPhone();
             let teks = encodeURIComponent(`Halo MAI DESAIN STORE, saya ingin membeli Top Up game *${namaGame}* paket *${paket}*. Mohon info format data dan sistem pembayarannya.`);
-            window.open(`https://wa.me/${NO_WHATSAPP}?text=${teks}`, '_blank');
+            window.open(`https://wa.me/${cleanPhone}?text=${teks}`, '_blank');
         }
 
         function bukaWAGeneric(pesanKustom) {
+            let cleanPhone = dapatkanCleanPhone();
             let teks = encodeURIComponent(pesanKustom);
-            window.open(`https://wa.me/${NO_WHATSAPP}?text=${teks}`, '_blank');
+            window.open(`https://wa.me/${cleanPhone}?text=${teks}`, '_blank');
         }
     </script>
 </body>
